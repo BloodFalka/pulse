@@ -4,6 +4,13 @@
     line-height: 30px;
     font-weight: 700;
     text-align: center;
+    text-transform: uppercase;
+    &_left {
+        font-size: 36px;
+        line-height: 37px;
+        text-align: left;
+        color: #ffffff;
+    }
 }
 
 @media(max-width: 1200px) {
@@ -11,11 +18,20 @@
 }
 
 @media(max-width: 991px) {
-    .title {}
+    .title {
+        &_left {
+            text-align: center;
+        }
+    }
 }
 
 @media(max-width: 767px) {
-    .title {}
+    .title {
+        &_left {
+            font-size: 30px;
+            text-align: center;
+        }
+    }
 }
 
 @media(max-width: 575px) {
