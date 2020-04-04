@@ -9,6 +9,9 @@
     font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
+    &:hover {
+        box-shadow: 3px 3px 10px #000;
+    }
     &_main {
         margin-top: 67px;
         width: 300px;
@@ -23,6 +26,11 @@
     &:active,
     &:focus {
         outline: none;
+    }
+    &_mini {
+        width: 131px;
+        height: 40px;
+        font-size: 14px;
     }
 }
 
