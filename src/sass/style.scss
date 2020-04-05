@@ -1,12 +1,12 @@
-@import 'libs/bootstrap-reboot.min';
-@import 'base/font';
+@import 'libs/bootstrap-reboot';
+@import 'libs/font';
+@import 'libs/slick';
+@import 'libs/animations';
 @import 'base/variables';
 * {
     font-family: 'Museo Sans Cyrl', sans-serif;
 }
 
-@import 'libs/animations';
-@import 'libs/slick';
 @import 'base/titles';
 @import 'blocks/container';
 @import 'blocks/promo';
