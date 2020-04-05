@@ -50,3 +50,7 @@ i {
 .icon-instagram:before {
     content: "\e903";
 }
+
+.icon-circle-up:before {
+    content: "\ea41";
+}

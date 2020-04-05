@@ -19,6 +19,16 @@
         width: 70px;
         display: block;
         margin: 0 auto;
+        img {
+            width: 70px;
+            height: 70px;
+        }
+        &_animated {
+            animation: heartbeat 1.5s ease infinite;
+            &:hover {
+                animation-play-state: paused;
+            }
+        }
     }
     &__desc {
         color: #0d0d0d;

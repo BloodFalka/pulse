@@ -36,21 +36,89 @@ $(document).ready(function() {
     //Modal
 
     $(`[data-modal=consultation]`).on('click', function() {
-        $(`.overlay, #consultation`).fadeIn(1700);
+        $(`.overlay, #consultation`).fadeIn('slow');
         $(`body`).css(`overflow`, `hidden`)
     });
 
     $('.modal__close').on('click', function() {
-        $(`.overlay, #consultation, #order, #thanks`).fadeOut(1700);
+        $(`.overlay, #consultation, #order, #thanks`).fadeOut('slow');
         $(`body`).css(`overflow`, `visible`)
     });
 
     $('.button_mini').each(function(i) {
         $(this).on('click', function() {
             $('#order .modal__desc').text($('.catalogue-item__subtitle').eq(i).text());
-            $(`.overlay, #order`).fadeIn(1700);
+            $(`.overlay, #order`).fadeIn('slow');
             $(`body`).css(`overflow`, `hidden`)
         })
     })
 
+    //Validation
+    const validateForms = (form) => {
+        $(form).validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+                phone: "required",
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Плз, введите имя',
+                    minlength: jQuery.validator.format("Введите {0} символа!")
+                },
+                phone: 'Плз, введи телефон',
+                email: {
+                    required: 'Плз введите почту',
+                    email: 'Нет, неправильно!'
+                }
+            }
+        });
+    };
+
+    validateForms(`#consultation form`);
+    validateForms(`#consultation-form`);
+    validateForms(`#order form`);
+
+    //NumMask
+    $(`input[name=phone]`).mask(`+38 (999) 999-9999`);
+
+    $(`form`).submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: 'mailer/smart.php',
+            data: $(this).serialize()
+        }).done(function() {
+            $(this).find('input').val('');
+            $('#consultation, #order').fadeOut('slow');
+            $('.overlay, #thanks').fadeIn('slow');
+
+            $('form').trigger('reset');
+        });
+        return false;
+    });
+
+    //Smooth scroll and pageup
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 1600) {
+            $('.pageup').fadeIn('slow');
+        } else {
+            $('.pageup').fadeOut('slow');
+        }
+    });
+
+    $('a[href=#up]').click(function() {
+        const _href = $(this).attr('href');
+        $('html, body').animate({ scrollTop: $(_href).offset().top + 'px' });
+        return false;
+    });
+
+    new WOW().init();
 });
