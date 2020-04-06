@@ -138,10 +138,12 @@
             transform: translateX(0%);
             transition: 0.5s all;
             margin-bottom: 0;
-            list-style-type: none;
             &_active {
                 transform: translateX(-100%);
                 margin-left: 0px;
+            }
+            ul {
+                list-style-type: none;
             }
             li {
                 position: relative;
